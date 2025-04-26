@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Locations</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Sans-serif;
+            background-color: #B7B7B7;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #E4E0E1;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .map {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .map iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+        }
+        .location-info {
+            text-decoration: none;
+            margin: 20px 0;
+        }
+        .location {
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .location h2 {
+            margin: 0;
+            color: #333;
+        }
+        .location p {
+            margin: 10px 0;
+
+        }
+        .footer{
+    color:Black;
+    
+    position: absolute;
+    top: 1150px;
+    left: 600px;
+
+    
+}
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="start.html">Home</a>
+    <a href="reservation.html">Reservation</a>
+    <a href="location.html">Locations</a>
+    <a href="price.html.html">Price</a>
+    <a href="contactus.html">Contact</a>
+</nav>
+
+<div class="container">
+    <h1>Parking Locations</h1>
+
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235527.49482607495!2d75.69903738855072!3d22.72388828988633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fcad1b410ddb%3A0x96ec4da356240f4!2sIndore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1745316095514!5m2!1sen!2sin" width="600" height="450" style="border:3px solid black;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="location-info" id="locationList">
+        <div class="location">
+            <h2>Vijay Nagar Parking</h2>
+            <button> <a href="C:\Users\alshi\OneDrive\Desktop\Parking\sublimecar\location1.html" target="_blank" >Select </button>
+            </a>
+        </div>
+
+        <div class="location">
+            <h2>Khajrana Parking</h2>
+            <button> <a href="C:\Users\alshi\OneDrive\Desktop\Parking\sublimecar\location2.html" target="_blank" >Select </button>
+            </a>
+        </div>
+        <div class="location">
+            <h2>Sangam Nagar Parking</h2>
+            <button> <a href="C:\Users\alshi\OneDrive\Desktop\Parking\sublimecar\location3.html" target="_blank" >Select </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer">
+        <p><span>&copy; 2025 Your Company. All rights reserved.</span></p>
+    </div>
+</footer>
+
+<script>
+    function filterLocations() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const locationList = document.getElement        
+        const locationList = document.getElementById('locationList');
+        const locations = locationList.getElementsByClassName('location');
+
+        // Loop through all locations and hide those that don't match the search query
+        for (let i = 0; i < locations.length; i++) {
+            const locationName = locations[i].getElementsByTagName('h2')[0].textContent;
+            if (locationName.toLowerCase().indexOf(filter) > -1) {
+                locations[i].style.display = ""; // Show the location
+            } else {
+                locations[i].style.display = "none"; // Hide the location
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

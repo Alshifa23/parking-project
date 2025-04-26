@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservation</title>
+ <style>   
+#res1 {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-family: Sans-serif;
+        }
+        #res1 a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        #res1 a:hover {
+            text-decoration: underline;
+        }
+
+#formhead{
+    color:black;
+}
+.footer{
+    color:Black;
+    
+    position: absolute;
+    top: 800px;
+    left: 600px;
+
+    
+}
+.img{
+
+    width: 900px;
+    height: auto;
+    position: absolute;
+    top: 150px;
+}
+#new{
+    position: absolute;
+    left: 1130px;
+    top:360px;
+   margin: 3px;
+   padding: 2px;
+   border: 4px solid black;
+
+}
+#formhead{
+    position: absolute;
+    left: 1040px;
+    top: 70px;
+    font-size: 80px;
+    font-family:Sans-serif;
+}
+body{
+    background-color: lightgray;
+}
+</style>
+</head>
+<body>
+<div id="res1">
+    <nav>
+        <a href="start.html">HOME</a>
+        <a href="reservation.html">RESERVATION</a>
+        <a href="location.html">LOCATIONS</a>
+        <a href="price.html.html">PRICE</a>
+        <a href="contactus.html">CONTACT</a>
+    </nav>
+</div>
+
+
+<center>
+    <h1 id="formhead">RESERVE NOW!!</h1>
+    <div id="new">
+        
+
+<form id="reservationForm" onsubmit="return reserve()">
+    <div>
+        <label>First Name:</label>
+        <input type="text" id="firstName" required>
+    </div>
+    <br>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" id="lastName" required>
+    </div>
+    <br>
+    <div>
+        <label>Email:</label>
+        <input type="email" id="email" required>
+    </div>
+    <br>
+    <div>
+        <label>Car Make:</label>
+        <input type="text" id="carMake" required>
+    </div>
+    <br>
+    <div>
+        <label>Car Model:</label>
+        <input type="text" id="carModel" required>
+    </div>
+    <br>
+    <div>
+        <label>License Plate:</label>
+        <input type="text" id="licensePlate" required>
+    </div>
+    <br>
+    <div>
+        <label>Start Date:</label>
+        <input type="date" id="startDate" required>
+    </div>
+    <br>
+    <div>
+        <label>End Date:</label>
+        <input type="date" id="endDate" required>
+    </div>
+    <p class="error" id="errorMessage" style="color: red;"></p>
+    <br>
+    <input type="submit" value="Reserve">
+</form>
+               
+            
+                <h3>Click for location</h3>
+                <button> <a href="file:///C:/Users/alshi/OneDrive/Desktop/Parking/sublimecar/location.html" target="_blank"> location </button>
+
+         
+            </center>
+             <img src="res.avif" class="img">
+
+<script>
+
+   document.getElementById('reservationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.textContent = '';
+
+    if (startDate > endDate) {
+        errorMessage.textContent = 'End date must be after start date.';
+    } else {
+        // Gather form data
+        const reservationData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            carMake: document.getElementById('carMake').value,
+            carModel: document.getElementById('carModel').value,
+            licensePlate: document.getElementById('licensePlate').value,
+            startDate: document.getElementById('startDate').value,
+            endDate: document.getElementById('endDate').value
+        };
+
+        // Send data to backend
+        fetch('http://localhost:3000/api/reserve', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reservationData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Reservation successful: ' + data.message);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Reservation failed. Please try again.');
+        });
+    }
+});
+
+    
+</script>
+
+
+
+             </div>
+            
+
+<footer>
+<div class= footer>
+        <p><span>&copy; 2025 Your Company. All rights reserved.</span></p>
+    </div>
+</footer>
+   
+
+            </body>
+</html>
